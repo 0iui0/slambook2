@@ -7,7 +7,9 @@ using namespace std;
 #include <Eigen/Geometry>
 
 using namespace Eigen;
-
+#define BUILD_PANGOLIN_GUI
+#define HAVE_GLEW
+#define HAVE_EIGEN
 #include <pangolin/pangolin.h>
 
 struct RotationMatrix {

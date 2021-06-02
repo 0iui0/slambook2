@@ -3,6 +3,9 @@
 #include <opencv2/opencv.hpp>
 #include <boost/format.hpp>  // for formating strings
 #include <sophus/se3.hpp>
+#define BUILD_PANGOLIN_GUI
+#define HAVE_GLEW
+#define HAVE_EIGEN
 #include <pangolin/pangolin.h>
 
 using namespace std;

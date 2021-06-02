@@ -6,6 +6,7 @@
 #include <opencv2/core/core.hpp>
 #include <ceres/ceres.h>
 #include <chrono>
+#include <Eigen/Core>  // For Eigen::aligned_allocator
 
 using namespace std;
 
