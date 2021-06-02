@@ -3,7 +3,7 @@ project(ch8)
 
 set(CMAKE_BUILD_TYPE "Release")
 add_definitions("-DENABLE_SSE")
-set(CMAKE_CXX_FLAGS "-std=c++11 ${SSE_FLAGS} -g -O3 -march=native")
+set(CMAKE_CXX_FLAGS "-std=c++11 ${SSE_FLAGS} -g -O3")
 
 find_package(OpenCV REQUIRED)
 find_package(Sophus REQUIRED)
