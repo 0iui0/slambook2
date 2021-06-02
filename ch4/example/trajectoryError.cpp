@@ -1,8 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <unistd.h>
-#define BUILD_PANGOLIN_GUI
-#define HAVE_GLEW
 #define HAVE_EIGEN
 #include <pangolin/pangolin.h>
 #include <sophus/se3.hpp>
@@ -99,7 +97,7 @@ void DrawTrajectory(const TrajectoryType &gt, const TrajectoryType &esti) {
       glEnd();
     }
     pangolin::FinishFrame();
-    usleep(5000);   // sleep 5 ms
+    usleep(10000);   // sleep 5 ms
   }
 
 }
