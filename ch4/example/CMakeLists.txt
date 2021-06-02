@@ -1,3 +1,9 @@
+cmake_minimum_required(VERSION 3.20)
+
+project(trajectoryError)
+set(CMAKE_CXX_FLAGS "-std=c++11 -mmacosx-version-min=11.2")
+include_directories("/usr/local/include/eigen3")
+
 find_package(Pangolin REQUIRED)
 include_directories(${Pangolin_INCLUDE_DIRS})
 add_executable(trajectoryError trajectoryError.cpp)
