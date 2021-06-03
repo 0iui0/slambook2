@@ -2,10 +2,11 @@ cmake_minimum_required(VERSION 2.8)
 project(dense_monocular)
 
 set(CMAKE_BUILD_TYPE "Release")
-set(CMAKE_CXX_FLAGS "-std=c++11 -march=native -O3")
+set(CMAKE_CXX_FLAGS "-std=c++11  -O3")
 
 ############### dependencies ######################
 # Eigen
+include_directories("/usr/local/include/")
 include_directories("/usr/local/include/eigen3")
 # OpenCV
 find_package(OpenCV 3.1 REQUIRED)

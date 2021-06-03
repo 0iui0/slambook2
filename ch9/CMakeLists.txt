@@ -2,17 +2,19 @@ cmake_minimum_required(VERSION 2.8)
 
 project(bundle_adjustment)
 set(CMAKE_BUILD_TYPE "Release")
-set(CMAKE_CXX_FLAGS "-O3 -std=c++11")
+set(CMAKE_CXX_FLAGS "-O3 -std=c++14")
 
 LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
-
+include_directories("/usr/local/include")
+include_directories("/opt/homebrew/Cellar")
 Find_Package(G2O REQUIRED)
 Find_Package(Eigen3 REQUIRED)
 Find_Package(Ceres REQUIRED)
-Find_Package(Sophus REQUIRED)
+find_package(Sophus REQUIRED)
+include_directories(${Sophus_INCLUDE_DIRS})
 Find_Package(CSparse REQUIRED)
 
-SET(G2O_LIBS g2o_csparse_extension g2o_stuff g2o_core cxsparse)
+SET(G2O_LIBS /usr/local/lib/libg2o_csparse_extension.dylib /usr/local/lib/libg2o_stuff.dylib /usr/local/lib/libg2o_core.dylib /opt/local/lib/libcxsparse.dylib)
 
 include_directories(${PROJECT_SOURCE_DIR} ${EIGEN3_INCLUDE_DIR} ${CSPARSE_INCLUDE_DIR})
 

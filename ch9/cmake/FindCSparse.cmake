@@ -1,12 +1,13 @@
 # Look for csparse; note the difference in the directory specifications!
 FIND_PATH(CSPARSE_INCLUDE_DIR NAMES cs.h
   PATHS
-  /usr/include/suitesparse
+  /usr/include/suitesparse /opt/homebrew/Cellar/suite-sparse/5.10.1
   /usr/include
   /opt/local/include
   /usr/local/include
   /sw/include
   /usr/include/ufsparse
+        /opt/homebrew/Cellar
   /opt/local/include/ufsparse
   /usr/local/include/ufsparse
   /sw/include/ufsparse
