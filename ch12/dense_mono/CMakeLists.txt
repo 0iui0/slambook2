@@ -6,7 +6,7 @@ set(CMAKE_CXX_FLAGS "-std=c++11 -march=native -O3")
 
 ############### dependencies ######################
 # Eigen
-include_directories("/usr/include/eigen3")
+include_directories("/usr/local/include/eigen3")
 # OpenCV
 find_package(OpenCV 3.1 REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
