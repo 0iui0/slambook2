@@ -31,3 +31,4 @@ add_executable(g2oCurveFitting g2oCurveFitting.cpp)
 target_link_libraries(g2oCurveFitting ${OpenCV_LIBS} ${G2O_CORE_LIBRARY} ${G2O_STUFF_LIBRARY})
 
 add_executable(helloworld helloworld.cpp)
+target_link_libraries(helloworld ${CERES_LIBRARIES})
