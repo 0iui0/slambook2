@@ -13,11 +13,11 @@ include_directories("/opt/homebrew/Cellar/")
 include_directories("/opt/homebrew/Cellar/vtk@8.2/8.2.0_6/include/vtk-8.2")
 
 
-set(OCTOMAP_INCLUDE_DIRS "/opt/homebrew/Cellar/octomap/1.9.7/include")
-set(OCTOMAP_LIBRARIES "/opt/homebrew/Cellar/octomap/1.9.7/lib/liboctomap.dylib")
+set(OCTOMAP_INCLUDE_DIRS "/usr/local/Cellar/Cellar/octomap/1.9.7/include")
+set(OCTOMAP_LIBRARIES "/usr/local/Cellar/octomap/1.9.7/lib/liboctomap.dylib")
 
-set(PCL_INCLUDE_DIRS "/opt/homebrew/Cellar/pcl/1.11.1_8/include/pcl-1.11/")
-set(PCL_LIBRARIES "/opt/homebrew/Cellar/pcl/1.11.1_8/lib")
+set(PCL_INCLUDE_DIRS "/usr/local/Cellar/pcl/1.11.1_8/include/pcl-1.11/")
+set(PCL_LIBRARIES "/usr/local/Cellar/pcl/1.11.1_8/lib")
 
 # pcl 
 find_package(PCL REQUIRED)
