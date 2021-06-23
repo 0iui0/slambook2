@@ -20,3 +20,7 @@ target_link_libraries(cvundistort ${OpenCV_LIBS})
 add_executable(cmpCVandVINs cmpCVandVINs.cpp)
 # 链接OpenCV库
 target_link_libraries(cmpCVandVINs ${OpenCV_LIBS})
+
+add_executable(cmpVINS cmpVINS.cpp)
+# 链接OpenCV库
+target_link_libraries(cmpVINS ${OpenCV_LIBS})
