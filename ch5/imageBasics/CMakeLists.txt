@@ -16,3 +16,7 @@ target_link_libraries(undistortImage ${OpenCV_LIBS})
 add_executable(cvundistort cvundistort.cpp)
 # 链接OpenCV库
 target_link_libraries(cvundistort ${OpenCV_LIBS})
+
+add_executable(cmpCVandVINs cmpCVandVINs.cpp)
+# 链接OpenCV库
+target_link_libraries(cmpCVandVINs ${OpenCV_LIBS})
