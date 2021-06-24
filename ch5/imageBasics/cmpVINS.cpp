@@ -37,7 +37,9 @@ const Mat D = (Mat_<double>(4, 1) << k1, k2, p1, p2);
 // 分辨率
 int rows = 752, cols = 480;
 
-void distortion(const Eigen::Vector2d &p_u, Eigen::Vector2d &d_u) {
+void distortion(const
+                Eigen::Vector2d &p_u,
+                Eigen::Vector2d &d_u) {
   double mx2_u, my2_u, mxy_u, rho2_u, rad_dist_u;
 
   mx2_u = p_u(0) * p_u(0);
@@ -49,8 +51,12 @@ void distortion(const Eigen::Vector2d &p_u, Eigen::Vector2d &d_u) {
       p_u(1) * rad_dist_u + 2.0 * p2 * mxy_u + p1 * (rho2_u + 2.0 * my2_u);
 }
 
-void liftProjective(const Eigen::Vector2d &p, Eigen::Vector3d &P,
-                    double m_inv_K11, double m_inv_K13, double m_inv_K22,
+void liftProjective(const
+                    Eigen::Vector2d &p,
+                    Eigen::Vector3d &P,
+                    double m_inv_K11,
+                    double m_inv_K13,
+                    double m_inv_K22,
                     double m_inv_K23) {
   double mx_d, my_d, mx2_d, mxy_d, my2_d, mx_u, my_u;
   double rho2_d, rho4_d, radDist_d, Dx_d, Dy_d, inv_denom_d;
@@ -72,11 +78,14 @@ void liftProjective(const Eigen::Vector2d &p, Eigen::Vector3d &P,
     mx_u = mx_d - d_u(0);
     my_u = my_d - d_u(1);
   }
+  // Obtain a projective ray
+  P << mx_u, my_u, 1.0;
 }
 
 void undistortedPoints(vector<cv::Point2f> cur_pts,
                        vector<cv::Point2f> cur_un_pts,
-                       map<int, cv::Point2f> cur_un_pts_map, vector<int> ids) {
+                       map<int, cv::Point2f> cur_un_pts_map,
+                       vector<int> ids) {
   cur_un_pts.clear();
   cur_un_pts_map.clear();
   double m_inv_K11, m_inv_K13, m_inv_K22, m_inv_K23;
