@@ -48,14 +48,12 @@ int main(int argc, char **argv) {
   // 构建最小二乘问题
   ceres::Problem problem;
   for (int i = 0; i < N; i++) {
-    problem
-        .AddResidualBlock( // 向问题中添加误差项
-                           // 使用自动求导，模板参数：误差类型，输出维度，输入维度，维数要与前面struct中一致
-            new ceres::AutoDiffCostFunction<CURVE_FITTING_COST, 1, 3>(
-                new CURVE_FITTING_COST(x_data[i], y_data[i])),
-            nullptr, // 核函数，这里不使用，为空
-            abc      // 待估计参数
-        );
+    // 使用自动求导，模板参数：误差类型，输出维度，输入维度，维数要与前面struct中一致
+    auto costFunc = new ceres::AutoDiffCostFunction<CURVE_FITTING_COST, 1, 3>(
+        new CURVE_FITTING_COST(x_data[i], y_data[i]));
+    // 向问题中添加误差项
+    /* 核函数，这里不使用，为空*/ /* 待估计参数*/
+    problem.AddResidualBlock(costFunc, nullptr, abc);
   }
 
   // 配置求解器

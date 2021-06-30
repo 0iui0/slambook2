@@ -15,24 +15,16 @@
 using namespace std;
 
 // 曲线模型的顶点，模板参数：优化变量维度和数据类型
-class CurveFittingVertex : public g2o::BaseVertex<3, Eigen::Vector3d> {
+class CurveFittingVertex : public g2o::BaseVertex<3, Eigen::Vector3d>{
 public:
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW
-
-  // 重置
-  virtual void setToOriginImpl() override {
+  void oplusImpl(const number_t *v) override {
+  }
+  void setToOriginImpl() override {
     _estimate << 0, 0, 0;
   }
-
-  // 更新
-  virtual void oplusImpl(const double *update) override {
-    _estimate += Eigen::Vector3d(update);
-  }
-
-  // 存盘和读盘：留空
-  virtual bool read(istream &in) {}
-
-  virtual bool write(ostream &out) const {}
+  bool read(istream &is) override { return false; }
+  bool write(ostream &os) const override { return false; }
 };
 
 // 误差模型 模板参数：观测值维度，类型，连接顶点类型
@@ -43,16 +35,16 @@ public:
   CurveFittingEdge(double x) : BaseUnaryEdge(), _x(x) {}
 
   // 计算曲线模型误差
-  virtual void computeError() override {
-    const CurveFittingVertex *v = static_cast<const CurveFittingVertex *> (_vertices[0]);
-    const Eigen::Vector3d abc = v->estimate();
+  void computeError() override {
+    const auto *v = dynamic_cast<const CurveFittingVertex *> (_vertices[0]);
+    const Eigen::Vector3d& abc = v->estimate();
     _error(0, 0) = _measurement - std::exp(abc(0, 0) * _x * _x + abc(1, 0) * _x + abc(2, 0));
   }
 
   // 计算雅可比矩阵
-  virtual void linearizeOplus() override {
-    const CurveFittingVertex *v = static_cast<const CurveFittingVertex *> (_vertices[0]);
-    const Eigen::Vector3d abc = v->estimate();
+  void linearizeOplus() override {
+    const auto *v = dynamic_cast<const CurveFittingVertex *> (_vertices[0]);
+    const Eigen::Vector3d& abc = v->estimate();
     double y = exp(abc[0] * _x * _x + abc[1] * _x + abc[2]);
     _jacobianOplusXi[0] = -_x * _x * y;
     _jacobianOplusXi[1] = -_x * y;
@@ -87,7 +79,7 @@ int main(int argc, char **argv) {
   typedef g2o::LinearSolverDense<BlockSolverType::PoseMatrixType> LinearSolverType; // 线性求解器类型
 
   // 梯度下降方法，可以从GN, LM, DogLeg 中选
-  auto solver = new g2o::OptimizationAlgorithmGaussNewton(
+  auto solver = new g2o::OptimizationAlgorithmLevenberg(
     g2o::make_unique<BlockSolverType>(g2o::make_unique<LinearSolverType>()));
   g2o::SparseOptimizer optimizer;     // 图模型
   optimizer.setAlgorithm(solver);   // 设置求解器
